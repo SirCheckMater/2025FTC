@@ -1,34 +1,31 @@
-package org.firstinspires.ftc.teamcode.pedroPathing.Comp;
-
-import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.hardwareMap;
+package org.firstinspires.ftc.teamcode.pedroPathing.Comp.Subsystems;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.HardwareMap;
 
 public class MecanumDrivetrain {
     private DcMotor backLeft;
     private DcMotor frontLeft;
     private DcMotor backRight;
     private DcMotor frontRight;
-    private Config config;
+    //private Config config;
     private double max;
     private double max_Speed;
     public MecanumDrivetrain(double Max_Speed){
-        config = new Config();
+        //config = new Config();
         //back left
-        backLeft = hardwareMap.get(DcMotor.class, config.backLeft);
+        //backLeft = hardwareMap.get(DcMotor.class, config.backLeft);
         backLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         backLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         //front left
-        frontLeft = hardwareMap.get(DcMotor.class, config.frontLeft);
+        //frontLeft = hardwareMap.get(DcMotor.class, config.frontLeft);
         frontLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         frontLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         //back right
-        backRight = hardwareMap.get(DcMotor.class, config.backRight);
+        //backRight = hardwareMap.get(DcMotor.class, config.backRight);
         backRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         backRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         //front right
-        frontRight = hardwareMap.get(DcMotor.class, config.frontRight);
+        //frontRight = hardwareMap.get(DcMotor.class, config.frontRight);
         frontRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         frontRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         if(Max_Speed > 1.0){
