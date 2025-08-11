@@ -30,20 +30,21 @@ public class OdoPods {
     // Drivetrain reference for setting motor powers
     private MecanumDrivetrain drivetrain;
 
-    public static double kph = 0;
-    public static double kdh = 0;
-    public static double kfh = 0;
-    public static double klh = 0;
+    public static double kph = 0.01;
+    public static double kdh = 0.004;
+    public static double kfh = 0.003;
+    public static double klh = 0.009;
 
-    public static double kpd = 0;
-    public static double kdd = 0;
-    public static double kfd = 0;
-    public static double kld = 0;
+    public static double kpd = -0.04;
+    //fix kdd laterx
+    public static double kdd = -0.05;
+    public static double kfd = -0.04;
+    public static double kld = -0.005;
 
-    public static double kps = 0;
-    public static double kds = 0;
-    public static double kfs = 0;
-    public static double kls = 0;
+    public static double kps = -0.45;
+    public static double kds = 0.003;
+    public static double kfs = -0.02;
+    public static double kls = -0.003;
 
     //Contructor
     public OdoPods(HardwareMap hardwareMap, MecanumDrivetrain Givendrivetrain) {
@@ -60,7 +61,7 @@ public class OdoPods {
         driveController = new PDFL(kpd, kdd, kfd, kld);
         strafeController = new PDFL(kps, kds, kfs, kls);
 
-        this.drivetrain = new MecanumDrivetrain(1);
+        this.drivetrain = Givendrivetrain;
 
         // Set deadzone for controllers
         headingController.setDeadzone(headingdeadzone);
@@ -143,7 +144,7 @@ public class OdoPods {
      * @param currentHeading The current heading (in degrees).
      * @param speed          The overall speed factor (0 to 1).
      */
-    public void goToPosition(double targetX, double targetY, double targetHeading,
+    private void goToPosition(double targetX, double targetY, double targetHeading,
                              double currentX, double currentY, double currentHeading, double speed) {
         double[] corrections = computeCorrections(targetX, targetY, targetHeading,
                 currentX, currentY, currentHeading, speed);
@@ -165,11 +166,13 @@ public class OdoPods {
      * @return True if the robot is within tolerance of the target, False otherwise.
      */
     public boolean holdPosition(double x, double y, double h, double speed) {
+        headingController.updateConstants(kph, kdh,kfh,klh);
+        driveController.updateConstants(kpd,kdd,kfd,kld);
+        strafeController.updateConstants(kps,kds, kfs,kls);
         double[] currentPos = getPosition();
         double currentX = currentPos[0];
         double currentY = currentPos[1];
         double currentHeading = currentPos[2];
-
         // Adjust PDFL control to move towards the target position
         goToPosition(x, y, h, currentX, currentY, currentHeading, speed);
 

@@ -4,81 +4,60 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
 import org.firstinspires.ftc.robotcontroller.external.samples.drivetrain;
 import org.firstinspires.ftc.teamcode.pedroPathing.Comp.Subsystems.Intake;
+import org.firstinspires.ftc.teamcode.pedroPathing.Comp.Subsystems.MecanumDrivetrain;
 import org.firstinspires.ftc.teamcode.pedroPathing.Comp.Subsystems.Outtake;
 
 // This is our main Teleop Class. It uses x, y ,z classes and calls into a, b, c functions, etc.
 // It inherits capabilites from dfg
 // It depends on Pedropath, etc.
+@com.qualcomm.robotcore.eventloop.opmode.TeleOp
 public class TeleOp extends OpMode {
-    // move this to inside intake
-
-    // move this to inside outake
-
-    drivetrain chassis;
-
+    MecanumDrivetrain chassis;
     Intake intake;
-
     Outtake outtake;
     public int state;
+
     @Override
     public void init() {
         //TODO check motor direction
-        state = 0;
+        state = 1;
         intake = new Intake();
         outtake = new Outtake();
+        chassis = new MecanumDrivetrain(1, hardwareMap);
     }
+
     @Override
     public void loop() {
-        if(gamepad1.a) {
-            switch (state) {
-                case 0:
-                    intake.Pickup_0();
-                    while (!gamepad1.right_bumper) {
-                        //basically just wait for button press
-                    }
-                    state = 1;
-                    break;
-                case 1:
-                    intake.Grab_1();
-                    while (!gamepad1.right_bumper) {
 
-                    }
+        chassis.drive(-gamepad1.left_stick_y, gamepad1.left_stick_x, gamepad1.right_stick_x);
+        switch (state) {
+            case 1:
+                telemetry.addData("state 1", "");
+                telemetry.update();
+                if (gamepad1.a) {
                     state = 2;
                     break;
-                case 2:
-                    intake.Transfer_3();
-                    outtake.transfer_4();
-                    while (!gamepad1.right_bumper) {
+                }
 
-                    }
+            case 2:
+                telemetry.addData("state 2", "");
+                telemetry.update();
+                if (gamepad1.a) {
                     state = 3;
                     break;
-                case 3:
-                    outtake.extend_5();
-
-                    while (!gamepad1.right_bumper) {
-
-                    }
-                    state = 5;
+                } else if (gamepad1.b) {
+                    state = 1;
                     break;
-                case 4:
-                    outtake.score_6();
-                    while (!gamepad1.right_bumper) {
-
-                    }
-                    state = 6;
+                }
+            case 3:
+                telemetry.addData("state 3", "");
+                telemetry.update();
+                if (gamepad1.b) {
+                    state = 2;
                     break;
-                case 5:
-                    outtake.release_7();
-                    while (!gamepad1.right_bumper) {
 
-                    }
-                    break;
-            }
+                }
         }
 
-        chassis.navigate(-gamepad1.left_stick_y, gamepad1.left_stick_x, gamepad1.right_stick_x);
-
     }
-
 }
