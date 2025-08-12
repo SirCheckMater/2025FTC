@@ -23,13 +23,12 @@ public class TeleOp extends OpMode {
         state = 1;
         intake = new Intake();
         outtake = new Outtake();
-        chassis = new MecanumDrivetrain(1, hardwareMap);
+        chassis = new MecanumDrivetrain(0.5, hardwareMap);
     }
 
     @Override
     public void loop() {
-
-        chassis.drive(-gamepad1.left_stick_y, gamepad1.left_stick_x, gamepad1.right_stick_x);
+        chassis.drive(gamepad1.left_stick_y, -gamepad1.left_stick_x, -gamepad1.right_stick_x);
         switch (state) {
             case 1:
                 telemetry.addData("state 1", "");

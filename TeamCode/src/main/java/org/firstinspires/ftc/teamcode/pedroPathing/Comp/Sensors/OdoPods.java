@@ -35,15 +35,14 @@ public class OdoPods {
     public static double kfh = 0.003;
     public static double klh = 0.009;
 
-    public static double kpd = -0.04;
-    //fix kdd laterx
+    public static double kpd = -0.12;
     public static double kdd = -0.05;
-    public static double kfd = -0.04;
+    public static double kfd = -0.11;
     public static double kld = -0.005;
 
-    public static double kps = -0.45;
+    public static double kps = -0.20;
     public static double kds = 0.003;
-    public static double kfs = -0.02;
+    public static double kfs = -0.25;
     public static double kls = -0.003;
 
     //Contructor
@@ -51,7 +50,7 @@ public class OdoPods {
 
         //Initialize pinpoint
         pinpoint = hardwareMap.get(GoBildaPinpointDriver.class, "pinpoint");
-        pinpoint.setOffsets(-63.5, 25);
+        pinpoint.setOffsets(-75, -88);
         pinpoint.setEncoderResolution(GoBildaPinpointDriver.GoBildaOdometryPods.goBILDA_4_BAR_POD);
         pinpoint.setEncoderDirections(GoBildaPinpointDriver.EncoderDirection.FORWARD, GoBildaPinpointDriver.EncoderDirection.REVERSED);
         pinpoint.recalibrateIMU();
