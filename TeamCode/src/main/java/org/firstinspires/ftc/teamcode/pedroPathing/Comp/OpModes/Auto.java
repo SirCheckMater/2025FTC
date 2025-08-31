@@ -43,35 +43,9 @@ public class Auto extends OpMode {
         telemetry.addData("heading:", pods.getHeading());
         telemetry.addData("velocity:", pods.getVelocity());
         telemetry.update();
-        switch(AutoState){
+        if(pods.holdPosition(nextx,nexty,nextheading,nextspeed)){
 
-            case 0:
-                nexty = 15;
-                driveToPosition(nextx,nexty,nextheading,nextspeed);
-                nextheading = 90;
-                driveToPosition(nextx,nexty,nextheading,nextspeed);
-                AutoState = 1;
-                break;
-            case 1:
-                nextx = 15;
-                driveToPosition(nextx,nexty,nextheading,nextspeed);
-                nextheading = 90;
-                driveToPosition(nextx,nexty,nextheading,nextspeed);
-                AutoState = 2;
-                break;
-            /*case 2:
-                nexty = 15;
-                driveToPosition(nextx,nexty,nextheading,nextspeed);
-                nextheading = 90;
-                driveToPosition(nextx,nexty,nextheading,nextspeed);
-                AutoState = 3;
-                break;
-            case 3:
-                nexty = 15;
-                driveToPosition(nextx,nexty,nextheading,nextspeed);
-                nextheading = 90;
-                driveToPosition(nextx,nexty,nextheading,nextspeed);
-                break;*/
+        }
         }
 
 
@@ -83,4 +57,3 @@ public class Auto extends OpMode {
             }
 
 
-    }

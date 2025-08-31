@@ -30,27 +30,27 @@ public class OdoPods {
     // Drivetrain reference for setting motor powers
     private MecanumDrivetrain drivetrain;
 
-    public static double kph = 0.01;
-    public static double kdh = 0.004;
-    public static double kfh = 0.003;
-    public static double klh = 0.009;
+    public static double kph = -0.0143;
+    public static double kdh = 0;
+    public static double kfh = 0.025;
+    public static double klh = 0;
 
-    public static double kpd = -0.12;
-    public static double kdd = -0.05;
-    public static double kfd = -0.11;
-    public static double kld = -0.005;
+    public static double kpd = 0.041;
+    public static double kdd = -0.009;
+    public static double kfd = 0.03;
+    public static double kld = 0.05;
 
-    public static double kps = -0.20;
-    public static double kds = 0.003;
-    public static double kfs = -0.25;
-    public static double kls = -0.003;
+    public static double kps = -0.057;
+    public static double kds = 0;
+    public static double kfs = -0.02;
+    public static double kls = 0;
 
     //Contructor
     public OdoPods(HardwareMap hardwareMap, MecanumDrivetrain Givendrivetrain) {
 
         //Initialize pinpoint
         pinpoint = hardwareMap.get(GoBildaPinpointDriver.class, "pinpoint");
-        pinpoint.setOffsets(-75, -88);
+        pinpoint.setOffsets(0, -165);
         pinpoint.setEncoderResolution(GoBildaPinpointDriver.GoBildaOdometryPods.goBILDA_4_BAR_POD);
         pinpoint.setEncoderDirections(GoBildaPinpointDriver.EncoderDirection.FORWARD, GoBildaPinpointDriver.EncoderDirection.REVERSED);
         pinpoint.recalibrateIMU();
