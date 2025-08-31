@@ -35,14 +35,14 @@ public class OdoPods {
     public static double kfh = 0.025;
     public static double klh = 0;
 
-    public static double kpd = 0.041;
-    public static double kdd = -0.009;
-    public static double kfd = 0.03;
+    public static double kpd = 0.029;
+    public static double kdd = 0;
+    public static double kfd = -0.02;
     public static double kld = 0.05;
 
-    public static double kps = -0.057;
+    public static double kps = -0.055;
     public static double kds = 0;
-    public static double kfs = -0.02;
+    public static double kfs = -0.03;
     public static double kls = 0;
 
     //Contructor
@@ -176,8 +176,8 @@ public class OdoPods {
         goToPosition(x, y, h, currentX, currentY, currentHeading, speed);
 
         // Use a tighter tolerance for checking if the target is reached
-        double positionTolerance = 2.5;  // Adjust this as needed for your robot's precision
-        double headingTolerance = 2.5;    // Tolerance for heading in degrees
+        double positionTolerance = 0.5;  // Adjust this as needed for your robot's precision
+        double headingTolerance = 1;    // Tolerance for heading in degrees
 
         boolean positionReached = Math.abs(currentX - x) < positionTolerance &&
                 Math.abs(currentY - y) < positionTolerance &&
