@@ -3,6 +3,8 @@ package org.firstinspires.ftc.teamcode.pedroPathing.Comp.Subsystems;
 import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.hardwareMap;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
@@ -28,20 +30,20 @@ public class Outtake {
     //states
     outtakeState state;
 
-    /**
-     * constructor, initializes servos, motors, and PID variables
-     * /*port = hardwareMap.get(Servo.class, config.portServoName);
-     *         starboard = hardwareMap.get(Servo.class, config.starboardServoName);
-     *         //initialize slides
-     *         slides = hardwareMap.get(DcMotor.class, config.StarboardSlideName);
-     *         slides2 = hardwareMap.get(DcMotor.class, config.PortSlideName);
-     *         slides2.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-     *         slides.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);*/
 
-    public Outtake(){
+
+
+    public Outtake(HardwareMap hardwareMap){
         config = new Config();
         //initialize servos
 
+        //initialize slides
+        slides = hardwareMap.get(DcMotor.class, config.StarboardSlideName);
+        slides2 = hardwareMap.get(DcMotor.class, config.PortSlideName);
+        slides2.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        slides.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        slides.setDirection(DcMotorSimple.Direction.FORWARD);
+        slides2.setDirection(DcMotorSimple.Direction.REVERSE);
         //initialize PID variables
         integralSum = 0;
         Kp = 0.002;
@@ -81,11 +83,14 @@ public class Outtake {
 
     //-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*--*-*-*-*-*-*-*-*-*-
     //slide controlling code
-
+    public void setPower(double power){
+        slides.setPower(power);
+        slides2.setPower(power);
+    }
     /**
      * updates the position of the slides by using a PID controller
      */
-    /*public void updateSlides(){
+    public void updateSlides(){
         double error = targetPosition - slides.getCurrentPosition();
         integralSum += error * timer.seconds();
         double derivitave = (error - lastError)/ timer.seconds();
@@ -100,10 +105,9 @@ public class Outtake {
      * sets the target position of the slides in inches
      * @param pose is the new target position
      */
-    /*
     public void setSlidesTargetPosition(double pose){
         targetPosition = pose;
-    }*/
+    }
 
 
 }
