@@ -2,10 +2,7 @@ package org.firstinspires.ftc.teamcode.pedroPathing.Comp.OpModes;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
-import org.firstinspires.ftc.robotcontroller.external.samples.drivetrain;
-import org.firstinspires.ftc.teamcode.pedroPathing.Comp.Subsystems.Intake;
 import org.firstinspires.ftc.teamcode.pedroPathing.Comp.Subsystems.MecanumDrivetrain;
-import org.firstinspires.ftc.teamcode.pedroPathing.Comp.Subsystems.Outtake;
 
 // This is our main Teleop Class. It uses x, y ,z classes and calls into a, b, c functions, etc.
 // It inherits capabilites from dfg
@@ -13,16 +10,14 @@ import org.firstinspires.ftc.teamcode.pedroPathing.Comp.Subsystems.Outtake;
 @com.qualcomm.robotcore.eventloop.opmode.TeleOp
 public class TeleOp extends OpMode {
     MecanumDrivetrain chassis;
-    Intake intake;
-    Outtake outtake;
+
     public int state;
 
     @Override
     public void init() {
         //TODO check motor direction
         state = 1;
-        intake = new Intake();
-        outtake = new Outtake(hardwareMap);
+
         chassis = new MecanumDrivetrain(0.5, hardwareMap);
     }
 

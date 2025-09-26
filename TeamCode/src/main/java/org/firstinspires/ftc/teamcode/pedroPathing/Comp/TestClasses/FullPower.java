@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.pedroPathing.Comp.Sensors;
+package org.firstinspires.ftc.teamcode.pedroPathing.Comp.TestClasses;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;

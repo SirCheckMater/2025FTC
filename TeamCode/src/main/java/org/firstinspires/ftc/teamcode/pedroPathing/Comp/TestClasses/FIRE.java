@@ -1,13 +1,11 @@
-package org.firstinspires.ftc.teamcode.pedroPathing.Comp.Sensors;
+package org.firstinspires.ftc.teamcode.pedroPathing.Comp.TestClasses;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.util.ElapsedTime;
-import com.sun.tools.javac.tree.DCTree;
 
-import java.util.Timer;
 @TeleOp
 public class FIRE extends OpMode {
     DcMotor shooter;
